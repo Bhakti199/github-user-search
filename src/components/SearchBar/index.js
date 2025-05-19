@@ -1,6 +1,5 @@
 import React from "react";
-import { Input, Button } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import { Input } from "antd";
 
 const SearchBar = ({ searchInput, handleKeyPress, handleInputChange }) => {
   return (
@@ -9,15 +8,6 @@ const SearchBar = ({ searchInput, handleKeyPress, handleInputChange }) => {
       value={searchInput}
       onChange={handleInputChange}
       onKeyDown={handleKeyPress}
-      suffix={
-        <Button
-          type="primary"
-          icon={<SearchOutlined />}
-          onClick={() =>
-            handleSearchUser({ page: 1, limit: 10, userName: searchInput })
-          }
-        />
-      }
       allowClear
     />
   );

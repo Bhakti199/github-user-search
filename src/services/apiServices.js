@@ -22,7 +22,6 @@ export const fetchUserList = async ({
 };
 
 export const fetchUserDetails = async (username) => {
-  if (!username) throw new Error("Username is required");
   const response = await axios.get(GITHUB_USER_DETAILS(username), headers);
   return response.data;
 };

@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 import { fetchUserDetails, fetchUserList } from "@/services/apiServices";
 import { throttle } from "lodash";
@@ -8,12 +8,16 @@ import {
   API_DELAY_VALUE,
   API_LIMIT_ERROR,
   USER_DATA_FETCH_ERROR,
+  USER_NAME_REQUIRED_ERROR,
 } from "@/Constants";
 import { Avatar } from "antd";
 import Link from "next/link";
 import { useWindowLayout } from "./useWindowLayout";
+import { useRouter } from "next/router";
 
 const useGithubData = () => {
+  const router = useRouter();
+  const { user_name } = router.query;
   const [searchInput, setSearchInput] = useState("");
   const [userListData, setUserListData] = useState([]);
   const [userDetails, setUserDetails] = useState(null);
@@ -71,9 +75,16 @@ const useGithubData = () => {
       setLoading(false);
     } catch (error) {
       notify(USER_DATA_FETCH_ERROR);
+      setUserDetails(null);
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (user_name) {
+      getUserDetails(user_name);
+    }
+  }, [user_name]);
 
   const debouncedSearch = useCallback(
     debounce(({ page, pageSize, userName }) => {
@@ -94,6 +105,10 @@ const useGithubData = () => {
   );
 
   const handlePaginationChange = (value) => {
+    if (!searchInput.trim()) {
+      notify(USER_NAME_REQUIRED_ERROR);
+      return;
+    }
     setPage(value);
     throttledPagination({ page: value, pageSize, userName: searchInput });
   };
@@ -102,17 +117,31 @@ const useGithubData = () => {
     const value = e.target.value;
     setSearchInput(value);
     setPageSize(10);
-    debouncedSearch({ page: 1, pageSize: 10, userName: value });
+    if (value.trim())
+      debouncedSearch({ page: 1, pageSize: 10, userName: value });
+    else {
+      setUserListData([]);
+      setPage(1);
+      setPageSize(10);
+    }
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      debouncedSearch({ page: 1, pageSize: 10, userName: searchInput });
+      if (searchInput.trim()) {
+        debouncedSearch({ page: 1, pageSize: 10, userName: searchInput });
+      } else {
+        setUserListData([]);
+        setPage(1);
+        setPageSize(10);
+        notify(USER_NAME_REQUIRED_ERROR);
+      }
     }
   };
 
   const handlePageSizeChange = (value) => {
     setPageSize(value);
+    setPage(1);
     throttledPagination({
       page: 1,
       pageSize: value,

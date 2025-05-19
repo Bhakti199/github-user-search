@@ -1,5 +1,5 @@
 export const API_LIMIT_ERROR =
-  "You have exceeded a secondary rate limit. Please wait a few minutes before you try again.";
+  "You have exceeded a api rate limit. Please wait a few minutes before you try again.";
 export const API_DELAY_VALUE = 1000;
 export const PAGINATION_ROW_OPTIONS = [
   {
@@ -21,4 +21,7 @@ export const PAGINATION_ROW_OPTIONS = [
 ];
 
 export const USER_DATA_FETCH_ERROR =
-  "Error fetching user details, please try again.";
+  "Error fetching user details, please try again later";
+
+export const USER_NAME_REQUIRED_ERROR =
+  "Please enter a GitHub username to search";
