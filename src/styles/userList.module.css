@@ -1,0 +1,9 @@
+.userListPaginationContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.userListTable{
+   margin-top: 20px;
+}
