@@ -1,9 +1,7 @@
 import { GITHUB_USER_DETAILS, GITHUB_USER_LIST } from "@/Constants/apiUrls";
 import axios from "axios";
-const config = {
-  headers: {
-    Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-  },
+const headers = {
+  Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
 };
 
 export const fetchUserList = async ({
@@ -17,12 +15,12 @@ export const fetchUserList = async ({
       pageSize,
       userName,
     }),
-    config
+    headers
   );
   return response.data;
 };
 
 export const fetchUserDetails = async (username) => {
-  const response = await axios.get(GITHUB_USER_DETAILS(username), config);
+  const response = await axios.get(GITHUB_USER_DETAILS(username), headers);
   return response.data;
 };
