@@ -7,5 +7,5 @@ export const GITHUB_USER_LIST = ({
 }) =>
   `${GITHUB_BASE_API_URL}/search/users?q=${userName}&per_page=${pageSize}&page=${page}`;
 
-export const GITHUB_USER_DETAILS = (username) =>
-  `${GITHUB_BASE_API_URL}/users/${username}`;
+export const GITHUB_USER_DETAILS = (userName) =>
+  `${GITHUB_BASE_API_URL}/users/${userName}`;

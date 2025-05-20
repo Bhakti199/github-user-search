@@ -6,6 +6,7 @@
 .userSearchContainer {
     padding: 20px;
     margin: 20px;
+    
     @media (max-width: 639px) {
         margin: 0px;
     }
