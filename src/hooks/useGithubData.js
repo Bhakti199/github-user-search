@@ -3,7 +3,6 @@ import debounce from "lodash/debounce";
 import { fetchUserDetails, fetchUserList } from "@/services/apiServices";
 import { throttle } from "lodash";
 import toast from "react-hot-toast";
-
 import {
   API_DELAY_VALUE,
   API_LIMIT_ERROR,
@@ -12,8 +11,8 @@ import {
 } from "@/Constants";
 import { Avatar } from "antd";
 import Link from "next/link";
-import { useWindowLayout } from "./useWindowLayout";
 import { useRouter } from "next/router";
+import { useWindowLayout } from "@/hooks/useWindowLayout";
 
 const useGithubData = () => {
   const router = useRouter();
@@ -40,7 +39,7 @@ const useGithubData = () => {
       dataIndex: "login",
       key: "username",
       render: (login, record) => (
-        <Link href={`/user/${login}`} target="_blank" rel="noopener noreferrer">
+        <Link href={`/user/${login}`} target="_blank">
           {login}
         </Link>
       ),
