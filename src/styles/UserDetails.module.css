@@ -4,6 +4,14 @@
     margin-bottom: 20px;
 }
 
+.spinContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 500px;
+    margin-top: 20px; 
+}
 .userDetailsCard{
     padding: 20px;
     margin: 20px;

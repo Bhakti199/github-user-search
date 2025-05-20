@@ -17,7 +17,6 @@ export const fetchUserList = async ({
     }),
     headers
   );
-  console.log(response.status);
   return response.data;
 };
 

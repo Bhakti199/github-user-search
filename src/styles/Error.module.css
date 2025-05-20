@@ -1,6 +1,15 @@
 .errorCard {
     margin: 20px;
     height: 300px;
+    
+}
+
+.errorCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
 }
 
 .errorMessage {

@@ -3,6 +3,7 @@ import UserList from "@/components/UserList";
 import useGithubData from "@/hooks/useGithubData";
 import { Card, Spin } from "antd";
 import styles from "@/styles/UserSearch.module.css";
+import Head from "next/head";
 
 function UserSearch() {
   const {
@@ -24,6 +25,9 @@ function UserSearch() {
 
   return (
     <Card className={styles.userSearchContainer}>
+      <Head>
+        <title>Github User Search | User search</title>
+      </Head>
       <h1 className={styles.title}>Search GitHub User</h1>
       <SearchBar
         searchInput={searchInput}
