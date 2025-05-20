@@ -1,5 +1,5 @@
 import { API_LIMIT_ERROR } from "@/Constants";
-import styles from "@/styles/Error.module.css";
+import styles from "./Error.module.css";
 import { Card } from "antd";
 import Head from "next/head";
 

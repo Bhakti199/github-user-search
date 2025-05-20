@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Table, Pagination, Select } from "antd";
 import { PAGINATION_ROW_OPTIONS } from "@/Constants";
-import styles from "@/styles/UserList.module.css";
+import styles from "./UserList.module.css";
 
 function UserList({
   data,

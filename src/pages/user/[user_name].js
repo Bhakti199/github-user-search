@@ -1,6 +1,6 @@
 import useGithubData from "@/hooks/useGithubData";
 import { Card, Spin } from "antd";
-import styles from "@/styles/UserDetails.module.css";
+import styles from "@/components/UserDetails/UserDetails.module.css";
 import Error from "@/components/Error";
 import Head from "next/head";
 import UserDetails from "@/components/UserDetails";

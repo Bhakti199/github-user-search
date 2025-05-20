@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Fragment } from "react";
 import { EnvironmentOutlined, UserOutlined } from "@ant-design/icons";
-import styles from "@/styles/UserDetails.module.css";
+import styles from "./UserDetails.module.css";
 
 function UserDetails({ userDetails }) {
   return (
