@@ -1,13 +1,59 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import SearchBar from "@/components/SearchBar";
+import UserList from "@/components/UserList";
+import useGithubData from "@/hooks/useGithubData";
+import { Card, Spin } from "antd";
+import styles from "@/styles/UserSearch.module.css";
+import Head from "next/head";
 
-function Home() {
-  const router = useRouter();
-  useEffect(() => {
-    router.replace("/user");
-  }, [router]);
+function UserSearch() {
+  const {
+    searchInput,
+    setSearchInput,
+    handleKeyPress,
+    handleSearchUser,
+    userListData,
+    loading,
+    page,
+    handleInputChange,
+    handlePaginationChange,
+    pageSize,
+    userListColumns,
+    isMobileView,
+    handlePageSizeChange,
+    getUserList,
+  } = useGithubData();
 
-  return null;
+  return (
+    <Card className={styles.userSearchContainer}>
+      <Head>
+        <title>Github User Search | User search</title>
+      </Head>
+      <h1 className={styles.title}>Search GitHub User</h1>
+      <SearchBar
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        handleKeyPress={handleKeyPress}
+        handleSearchUser={handleSearchUser}
+        handleInputChange={handleInputChange}
+        getUserList={getUserList}
+      />
+      {loading ? (
+        <div className={styles.spinContainer}>
+          <Spin />
+        </div>
+      ) : (
+        <UserList
+          data={userListData}
+          columns={userListColumns}
+          page={page}
+          handlePaginationChange={handlePaginationChange}
+          pageSize={pageSize}
+          isMobileView={isMobileView}
+          handlePageSizeChange={handlePageSizeChange}
+        />
+      )}
+    </Card>
+  );
 }
 
-export default Home;
+export default UserSearch;
